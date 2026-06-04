@@ -1,0 +1,16 @@
+[
+  {
+    "file": "src/display_driver.c",
+    "arguments": [
+      "/usr/sbin/clang",
+      "-Wall",
+      "-I./src",
+      "-c",
+      "-o",
+      "obj/display_driver.o",
+      "src/display_driver.c"
+    ],
+    "directory": "/home/blu/workspace/git/Blus/dungeones",
+    "output": "obj/display_driver.o"
+  }
+]

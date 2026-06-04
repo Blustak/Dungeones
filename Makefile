@@ -1,5 +1,6 @@
-CC ?= 'clang'
-CFLAGS ?= -Wall -I.
+CC = clang
+CFLAGS ?= -Wall -I./src
+LDFLAGS=-lm -lraylib -lGL -lpthread -ldl -lrt -lX11
 FD ?= fd
 SHELL = /usr/bin/zsh
 
@@ -21,7 +22,9 @@ $(BIN_DIR):
 	@mkdir $(BIN_DIR)
 
 $(BIN_DIR)/$(TARGET): $(OBJECTS)
-	$(CC) $^ -o $@
+	@echo "linking objects..."
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@echo "Compiling source..."
 	$(CC) $(CFLAGS) -c -o $@ $<
