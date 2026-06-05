@@ -1,10 +1,41 @@
 [
   {
+    "file": "./src/display_driver.c",
+    "arguments": [
+      "/usr/sbin/clang",
+      "-Wall",
+      "-I./src",
+      "-g",
+      "./src/display_driver.c",
+      "-o",
+      "./bin/dungeones",
+      "-g"
+    ],
+    "directory": "/home/blu/workspace/git/Blus/dungeones",
+    "output": "./bin/dungeones"
+  },
+  {
+    "file": "./src/main.c",
+    "arguments": [
+      "/usr/sbin/clang",
+      "-Wall",
+      "-I./src",
+      "-g",
+      "./src/main.c",
+      "-o",
+      "./bin/dungeones",
+      "-g"
+    ],
+    "directory": "/home/blu/workspace/git/Blus/dungeones",
+    "output": "./bin/dungeones"
+  },
+  {
     "file": "src/display_driver.c",
     "arguments": [
       "/usr/sbin/clang",
       "-Wall",
       "-I./src",
+      "-glldb",
       "-c",
       "-o",
       "obj/display_driver.o",
@@ -12,5 +43,20 @@
     ],
     "directory": "/home/blu/workspace/git/Blus/dungeones",
     "output": "obj/display_driver.o"
+  },
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "/usr/sbin/clang",
+      "-Wall",
+      "-I./src",
+      "-glldb",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/blu/workspace/git/Blus/dungeones",
+    "output": "obj/main.o"
   }
 ]

@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "defs.h"
+#include "display_driver.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +16,6 @@ int main(int argc, char *argv[])
     .v_line = {
       .start_pos = {.x = 10, .y = 10},
       .end_pos = {.x = SCREEN_WIDTH - 10, .y = SCREEN_HEIGHT - 20},
-      .line_width = 10,
       .color = RED
     }
   };
@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
   InitWindow(screen_width, screen_height, "Hello world example");
 
   while (!WindowShouldClose()){
-    PushToStack(display_driver, simpleDrawableRect, RECT);
-    PushToStack(display_driver, simpleLine, LINE);
+    PushToStack(display_driver, &simpleDrawableRect, RECT);
+    PushToStack(display_driver, &simpleLine, LINE);
     FlushDrawStack(display_driver);
   }
   CloseWindow();

@@ -1,6 +1,7 @@
-CC = bear -- clang
-CFLAGS ?= -Wall -I./src -g
-LDFLAGS=-lm -lraylib -lGL -lpthread -ldl -lrt -lX11 -g
+CC = clang
+BEAR = bear
+CFLAGS ?= -Wall -I./src -glldb
+LDFLAGS=-lm -lraylib -lGL -lpthread -ldl -lrt -lX11 -glldb
 FD ?= fd
 SHELL = /usr/bin/zsh
 
@@ -10,19 +11,15 @@ BIN_DIR=./bin
 
 TARGET ?= dungeones
 
-SOURCES := $(shell fd -tf -ec . $(SRC_DIR))
-FLAT_SOURCES := $(foreach srcFile, $(SOURCES), $(notdir $(srcFile)))
-OBJECTS := $(addprefix $(OBJ_DIR)/,$(patsubst %.c, %.o, $(FLAT_SOURCES)))
+SOURCES := $(wildcard $(SRC_DIR)/*.c)
+OBJECTS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
 .PHONY: all
 all: $(BIN_DIR) $(BIN_DIR)/$(TARGET)
 
 .PHONY: build
 build: $(BIN_DIR)
-	$(CC) $(CFLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LDFLAGS)
-
-.PHONY: compile
-compile: $(BIN_DIR)/$(TARGET)
+	$(BEAR) -- $(CC) $(CFLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LDFLAGS)
 
 $(BIN_DIR):
 	@echo "making $(BIN_DIR)..."
@@ -30,16 +27,16 @@ $(BIN_DIR):
 
 $(BIN_DIR)/$(TARGET): $(OBJECTS)
 	@echo "linking objects..."
-	$(CC) $^ -o $@ $(LDFLAGS)
+	$(BEAR) --append -- $(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "Compiling source..."
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(BEAR) --append -- $(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY:clean distclean
 clean:
 	@echo "deleting binaries..."
-	@rm -f $(BIN_DIR)/*
+	@rm -f $(BIN_DIR)/* || return 0
 
 distclean: clean
 	@echo "removing objects..."
