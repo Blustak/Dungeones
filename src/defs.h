@@ -1,8 +1,0 @@
-#ifndef DEFINITIONS_HEADER
-#define DEFINITIONS_HEADER
-
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-
-#endif /* ifndef DEFINITIONS_HEADER
-#defin */

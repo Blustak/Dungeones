@@ -1,6 +1,5 @@
-bear.yml
-events.json
 .env*
 .clangd
+/build
 /bin
 /obj
