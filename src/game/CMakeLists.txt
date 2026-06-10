@@ -1,1 +1,10 @@
-target_sources(${PROJECT_NAME} PRIVATE game.c)
+add_library(GameLib game.c)
+
+target_sources(GameLib
+  PRIVATE
+  game.c
+
+  PUBLIC FILE_SET HEADERS
+  FILES
+  game.h
+)
