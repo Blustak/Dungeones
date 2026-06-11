@@ -5,7 +5,7 @@
 #define TILE_PIXEL_HEIGHT 16
 
 #define COLOR_TILE_EMPTY (Color)BLACK
-#define COLOR_TILE_FLOOR (Color)DARKPURPLE
+#define COLOR_TILE_FLOOR (Color)YELLOW
 #define COLOR_TILE_WALL (Color)RAYWHITE
 
 typedef enum{
@@ -29,4 +29,5 @@ game_tile_t* GetTile(game_map_t* map, unsigned int x, unsigned int y);
 game_tile_t* SetTile(game_map_t* map, game_tile_t tile, unsigned int x, unsigned int y);
 
 int DrawTile(game_tile_t* tile, int x, int y);
+int DrawMap(game_map_t* map, unsigned int x, unsigned int y);
 void FreeGameMap(game_map_t map);

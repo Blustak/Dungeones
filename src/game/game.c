@@ -44,6 +44,7 @@ game_tile_t* GetTile(game_map_t *map, unsigned int x, unsigned int y){
 
 game_tile_t* SetTile(game_map_t *map,game_tile_t tile, unsigned int x, unsigned int y){
   assert(x < map->map_width && y < map->map_height);
+  assert(map != NULL);
   game_tile_t* gameTile = GetTile(map, x, y);
   assert(gameTile != NULL);
   *gameTile = tile;
@@ -68,5 +69,21 @@ int DrawTile(game_tile_t *tile, int x, int y){
   }
 
   DrawRectangle(x, y, TILE_PIXEL_WIDTH, TILE_PIXEL_HEIGHT, tileColor);
+  return 0;
+}
+
+int DrawMap(game_map_t *map, unsigned int origin_x, unsigned int origin_y){
+  game_tile_t* tile;
+  assert(map != NULL);
+  for (unsigned int y = 0; y < map->map_height; y++) {
+    for(unsigned int x = 0; x < map->map_width; x++) {
+      tile = &(map->grid[y][x]);
+      assert(tile != NULL);
+      int res = DrawTile(tile, origin_x + (TILE_PIXEL_WIDTH * x),  origin_y + (TILE_PIXEL_HEIGHT * y));
+      if (res != 0) {
+        return res;
+      }
+    }
+  }
   return 0;
 }
