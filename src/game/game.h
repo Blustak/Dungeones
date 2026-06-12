@@ -25,9 +25,11 @@ typedef struct GameMap{
 } game_map_t;
 
 game_map_t NewGameMap(unsigned int width, unsigned int height);
-game_tile_t* GetTile(game_map_t* map, unsigned int x, unsigned int y);
-game_tile_t* SetTile(game_map_t* map, game_tile_t tile, unsigned int x, unsigned int y);
+game_tile_t* GetTile(game_map_t* restrict map, unsigned int x, unsigned int y);
+game_tile_t* SetTile(game_map_t* restrict map, game_tile_t tile, unsigned int x, unsigned int y);
+game_tile_t* SetTiles(game_map_t* restrict map, game_tile_t tile, unsigned int x, unsigned int y, unsigned int width, unsigned int height);
 
-int DrawTile(game_tile_t* tile, int x, int y);
-int DrawMap(game_map_t* map, unsigned int x, unsigned int y);
+int DrawTile(game_tile_t* restrict tile, int x, int y);
+int DrawMap(game_map_t* restrict map, unsigned int x, unsigned int y);
+void MakeRoom(game_map_t* restrict map, unsigned int x1, unsigned int y1, unsigned int width, unsigned int height);
 void FreeGameMap(game_map_t map);

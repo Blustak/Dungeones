@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
   };
   size_t counter = 0;
   InitWindow(800, 800, "Map test");
+  MakeRoom(&map, 20, 20, 30, 30);
 
   while(!WindowShouldClose()) {
     BeginDrawing();
